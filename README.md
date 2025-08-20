@@ -1,5 +1,6 @@
 # Healthcare-Overview
 This project was designed to help a department lead at a mid-sized community health centre gain clarity on financial health and provider performance.
+
 ✅ Real-World Value: Helps executives with insights that drive financial health, smarter decisions, and sustainable growth.
 
 # Table of Contents
@@ -21,24 +22,20 @@ This project was designed to help a department lead at a mid-sized community hea
 - [Conclusion](#conclusion)
 
 # Executive Summary
-Phoenix Bank aims to enhance visibility into its expanding retail loan portfolio. This project provides an interactive dashboard suite that enables executive leadership and lending teams to monitor loan applications, assess repayment performance, and proactively manage risk exposure. The solution enhances data-driven decision-making by offering clear insights through three tailored dashboards: Summary, Overview, and Details.
+Dr. Sarah Johnson wants her health centre to remain financially sustainable while maintaining quality patient care. This dashboard was designed to provide a clear, real-time view of your health centre’s financial health and provider performance, bringing together data from eight critical sources: visits, procedures, patients, insurance, cities, providers, diagnoses, and departments. The solution enhances data-driven decision-making by offering clear insights through an overview dashboard.
 
 # Objective
-  - Develop dynamic dashboards to track retail loan KPIs
-  - Identify underperforming loan segments early
-  - Provide clear, actionable insights to different stakeholders
-  - Enable executive reporting with minimal manual input
-  - Improve efficiency in loan performance monitoring
+- Financial Stability – Ensure the health centre is not overspending on operations and billing losses.
+- Visibility on Provider Performance – Compare workload, patient satisfaction, and revenue contribution of different providers.
+- Informed Decision Making – Quickly assess financial reports without waiting weeks for the finance team summaries.
+- Balanced Care vs. Costs – Maintain patient care quality while optimising financial outcomes.
 
 # User Story
-Mrs. Adaobi Okonkwo, the Head of Retail Lending at Phoenix Bank, is responsible for overseeing the performance of thousands of consumer loans issued by the bank. With limited visibility into how these loans are performing across customer types, states, and purposes, she needs an efficient way to track loan application trends, repayment patterns, and risk indicators in one place.
+Dr. Sarah Johnson is the Senior Physician & Department Lead at a Mid-sized Community Health Centre with 15 years in clinical care and 5 years in administrative oversight. She wants her health centre to remain financially sustainable while maintaining quality patient care.
 
-To solve this, she contracted me, a data analyst, to develop a Loan Portfolio Performance Monitoring System made up of three dashboards:
-  A Summary Dashboard for executive insights,
-  An Overview Dashboard to explore trends by segment,
-  A Details Dashboard for operational-level tracking.
+To solve this, she contracted me, a data analyst, to develop a healthcare overview dashboard that would bring clarity, efficiency, and confidence.
 
-These tools will empower her team to shift from reactive reporting to proactive, insight-driven portfolio management—ultimately enabling smarter lending strategies and minimizing exposure to high-risk borrowers.
+These tools will empower her to reduce administrative burden, improve financial visibility, and support decisions that balance patient care with financial sustainability.
 
 # Design
 ## Dashboard Component Requirements

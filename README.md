@@ -30,7 +30,7 @@ Dr. Sarah Johnson wants her health centre to remain financially sustainable whil
 - Balanced Care vs. Costs – Maintain patient care quality while optimising financial outcomes.
 
 # User Story
-Dr. Sarah Johnson is the Senior Physician & Department Lead at a mid-Sized Community Health Centre, with 15 years of experience in clinical care and 5 years in administrative oversight. She wants her health centre to remain financially sustainable while maintaining quality patient care.
+Dr. Sarah Johnson is the Senior Physician & Department Lead at a mid-sized Community Health Centre, with 15 years of experience in clinical care and 5 years in administrative oversight. She wants her health centre to remain financially sustainable while maintaining quality patient care.
 
 To solve this, she contracted me, a data analyst, to develop a healthcare overview dashboard that would bring clarity, efficiency, and confidence.
 
@@ -47,10 +47,10 @@ These tools will empower her to reduce administrative burden, improve financial 
 
 ### Overview Section
 CHARTS
-- Billing Amount by Patient Location (City/State) (Azure Map):  To identify seasonality and long-term trends in lending activities
-- Billing Amount by Procedure (Clustered Column Chart): To identify regions with significant lending activity and assess regional disparities
-- Billing Amount by Diagnosis and Service Type (100% Stacked Bar Chart): To allow the client to understand the distribution of loans across various term lengths.
-- Bililng Amount by Department (Clustered Bar Chart): How lending metrics are distributed among borrowers with different employment lengths, helping us assess the impact of employment history on loan applications.
+- Billing Amount by Patient Location (City/State) (Azure Map):  To identify where the majority of patients (and revenue) are coming from.
+- Billing Amount by Procedure (Clustered Column Chart): Breaks down which medical procedures generate the most revenue.
+- Billing Amount by Diagnosis and Service Type (100% Stacked Bar Chart): To compare billing distribution across different diagnoses and types of services provided.
+- Billing Amount by Department (Clustered Bar Chart): To observe the financial contribution by each department (eg, cardiology, neurology, general surgery).
 
 ## Tools
 | Tools | Purpose |
@@ -60,10 +60,15 @@ CHARTS
 | Github | Hosting the project documentation |
 
 ## Data Exploration notes
-I observed that the dataset can be categorised into three sections 
-   Applicant Details: id, emp_length, emp_title, annual_income, application_type, home_ownership
-   Loan Details: loan_amount, term, int_rate, installment, loan_status, grade, sub_grade, purpose
-   Payment and Credit History: total_payment, dti (debt-to-income), total_acc, issue_date, last_payment_date, next_payment_date, last_credit_pull_date
+A total of eight (8) datasets were provided:
+- visits: date of visit, patient id, provider id, deparment id, diagnosis id, procedure id, insurance id, service type, treatment cost, medication cost, follow up visit date, patient satisfaction score, referral source, emergency visit, payment status, discharge date, admitted date, room type, insurance coverage, room charges(daily rate)
+- providers: provider id, provider name, gender, nationality, age, image
+- procedure id: procedure
+- patients: patient id, patient name, gender, age, city id, race
+- insurance: insurance ID, insurance provider
+- diagnoses: diagnosis id, diagnosis
+- departments: department id, department
+- cities: city id, city, state
 
 Excel was used to check through for null values, and emp_title field had null values.
 While loading the dataset into SQL, four fields were in the wrong data type.
@@ -113,6 +118,9 @@ Bad Loan % = (CALCULATE([Total Loan Applications], bank_loan_data[Good vs Bad Lo
 ```
 # Testing
 SQL was used primarily for testing the data
+```
+fghjgh
+```
 
 # Findings
 - The number of loan applicants categorized as current and fully paid is much higher than those categorized as charged off.

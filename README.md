@@ -16,9 +16,8 @@ This project was designed to help a department lead at a mid-sized community hea
 - [Testing](#testing)
 - [Visualization](#visualization)
    - [Results](#results)
-- [Findings](#findings)
-- [Recommendations](#recommendations)
 - [Conclusion](#conclusion)
+- [Additional note](#additional-note)
 
 # Executive Summary
 Dr. Sarah Johnson wants her health centre to remain financially sustainable while maintaining quality patient care. This dashboard was designed to provide a clear, real-time view of your health centre’s financial health and provider performance, bringing together data from eight critical sources: visits, procedures, patients, insurance, cities, providers, diagnoses, and departments. The solution enhances data-driven decision-making by offering clear insights through an overview dashboard.
@@ -228,28 +227,20 @@ SELECT
 FROM visits
 ```
 
-# Findings
-- The number of loan applicants categorized as current and fully paid is much higher than those categorized as charged off.
-- There is a clear upward trend in loan applications, funded amounts, and amounts received.
-- Borrowers with 10+ years of work experience take larger loans.
-- The top five loan purposes are debt consolidation, credit card, other, home improvement, and major purchase.
-  
-# Recommendations
-The dashboards have been successfully developed to provide a centralized and interactive view of the bank’s retail loan performance. While the dataset holds more insights than covered here, the following recommendations are based on notable patterns that align with the client’s need for better institutional visibility and decision-making.
-
-- Maintain existing credit approval criteria in these high-performing segments and use the Overview Dashboard to track them quarterly. Consider targeted retention offers for reliable borrowers to encourage repeat business.
-- Align staffing, loan processing capacity, and marketing resources with this growth trend. Consider scaling automated credit checks and loan processing workflows to meet rising demand without increasing operational bottlenecks.
-- Treat this group as a prime borrower segment. Consider targeted premium loan products or preferential interest rates for long-tenure professionals to increase market share in this low-risk category.
-- Use these categories as anchors for specialized lending packages with tailored repayment options. Marketing campaigns can focus on these high-demand purposes to maximize uptake.
-
 # Conclusion
-The Loan Portfolio Performance Monitoring System now provides Phoenix Bank with the tools to translate raw lending data into actionable insights. These findings confirm that the bank is performing strongly in repayment rates, experiencing portfolio growth, and has clear opportunities to refine loan offerings for targeted borrower groups.
+By integrating these datasets into one single source of truth, the dashboard eliminates the inefficiencies of scattered reports and manual spreadsheets. It gives you and your team instant access to the metrics that matter most:
 
-By continuously using these dashboards, management can:
+- Financial Health – Revenue, expenses, net income, and outstanding claims, updated in real time.
+- Provider Performance – Patient volume, revenue contribution, and satisfaction scores by provider.
+- Insurance & Claims Tracking – Paid vs. pending claims and denial rates for quicker follow-up.
+- Department Insights – Cost vs. workload comparisons across departments.
+- Trend Analysis – Month-over-month growth in revenue, patient visits, and claims.
+- The outcome is a practical decision-making tool that empowers leadership to:
+- Spot risks early (rising costs, delayed claims, underperforming providers).
+- Make informed staffing, budgeting, and operational decisions.
+- Communicate financial and operational performance transparently to staff, board members, and stakeholders.
 
-- Detect risk patterns early
-- Focus on profitable borrower segments
-- Adjust product strategies based on demand trends
-- Strengthen the institution’s data-driven decision-making culture
+In short, this dashboard transforms raw healthcare and financial data into clear, actionable insights—helping your center stay financially strong while continuing to deliver high-quality patient care.
 
-While these insights are valuable, they represent only part of the broader analytical capabilities now available through the dashboard suite. With ongoing monitoring and deeper exploration, Phoenix Bank can further enhance its lending strategy and portfolio performance.
+# Additional note
+For healthcare workers like Dr. Sarah Johnson, a summary dashboard transforms complex, scattered data into clear, actionable insights. This reduces administrative burden, improves financial visibility, and supports decisions that balance patient care with financial sustainability.

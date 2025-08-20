@@ -9,9 +9,8 @@ This project was designed to help a department lead at a mid-sized community hea
 - [User Story](#user-story)
 - [Design](#design)
      - [Dashboard Component Requirements](#dashboard-component-requirements)
-     - [Summary Dashboard](#summary-dashboard)
-     - [Overview Dashboard](#overview-dashboard)
-     - [Details Dashboard](#details-dashboard)
+     - [Summary Section](#summary-section)
+     - [Overview Section](#overview-section)
 - [Tools](#tools)
 - [Data Exploration Notes](#data-exploration-notes)
 - [Testing](#testing)
@@ -31,7 +30,7 @@ Dr. Sarah Johnson wants her health centre to remain financially sustainable whil
 - Balanced Care vs. Costs – Maintain patient care quality while optimising financial outcomes.
 
 # User Story
-Dr. Sarah Johnson is the Senior Physician & Department Lead at a Mid-sized Community Health Centre with 15 years in clinical care and 5 years in administrative oversight. She wants her health centre to remain financially sustainable while maintaining quality patient care.
+Dr. Sarah Johnson is the Senior Physician & Department Lead at a mid-Sized Community Health Centre, with 15 years of experience in clinical care and 5 years in administrative oversight. She wants her health centre to remain financially sustainable while maintaining quality patient care.
 
 To solve this, she contracted me, a data analyst, to develop a healthcare overview dashboard that would bring clarity, efficiency, and confidence.
 
@@ -39,54 +38,29 @@ These tools will empower her to reduce administrative burden, improve financial 
 
 # Design
 ## Dashboard Component Requirements
-### Summary Dashboard
-- Total Loan Applications: We need to calculate the total number of loan applications received during a specified period. Additionally, it is essential to monitor the Month-to-Date (MTD) Loan Applications and track changes Month-over-Month (MoM).
-- Total Funded Amount: Understanding the total amount of funds disbursed as loans is crucial. We also want to keep an eye on the MTD Total Funded Amount and analyse the Month-over-Month (MoM) changes in this metric.
-- Total Amount Received: Tracking the total amount received from borrowers is essential for assessing the bank's cash flow and loan repayment. We should analyse the Month-to-Date (MTD).
-- Total Amount Received and observe the Month-over-Month (MoM) changes.
-- Average Interest Rate: Calculating the average interest rate across all loans, MTD, and monitoring the Month-over-Month (MoM) variations in interest rates will provide insights into our lending portfolio's overall cost.
-- Average Debt-to-Income Ratio (DTI): Evaluating the average DTI for our borrowers helps us gauge their financial health. We need to compute the average DTI for all loans, MTD, and track Month-over-Month (MoM) fluctuations.
+### Summary Section
+- Total Billing Amount: We need to calculate the total billing amount, which is the sum of total medication cost, total treatment cost and total room charges. Additionally, it is essential to monitor the average value per patient visit and track monthly changes.
+- Total Medication Cost: Understanding the total revenue spent on medication is vital, as it captures spending on drugs prescribed and dispensed to patients. We also want to keep an eye on the average per month.
+- Total Treatment Cost: Tracking the total treatment cost helps to understand the expenses incurred for medical services provided (e.g., procedures, diagnostics). We should analyse the average monthly changes.
+- Total Insurance coverage: This metric reveals the portion of bills covered by insurance providers. It highlights reliance on insurance providers vs. out-of-pocket payments, and identifies gaps in reimbursements. The average monthly changes need to be observed.
+- Total Out-of-Pocket: Evaluating the total out-of-pocket payments by patients shows the financial burden they carry when insurance providers don't cover costs. Helps assess patient affordability, payment risks, and opportunities to improve insurance claim processes.
 
-Good Loan v Bad Loan KPI’s
-
-| Good Loan | Bad Loan|
-| --- | --- | 
-| Good Loan Application Percentage | Bad Loan Application Percentage |
-| Good Loan Applications | Bad Loan Applications |
-| Good Loan Funded Amount | Bad Loan Funded Amount |
-| Good Loan Total Received Amount | Bad Loan Total Received Amount |
-
-Loan Status Grid View
-
-In order to gain a comprehensive overview of our lending operations and monitor the performance of loans, we aim to create a grid view report categorized by 'Loan Status.’ By providing insights into metrics such as 'Total Loan Applications,' 'Total Funded Amount,' 'Total Amount Received,' 'Month-to-Date (MTD) Funded Amount,' 'MTD Amount Received,' 'Average Interest Rate,' and 'Average Debt-to-Income Ratio (DTI),' this grid view will empower us to make data-driven decisions and assess the health of our loan portfolio.
-
-### Overview Dashboard
+### Overview Section
 CHARTS
-- Monthly Trends by Issue Date (Line Chart):  To identify seasonality and long-term trends in lending activities
-- Regional Analysis by State (Filled Map): To identify regions with significant lending activity and assess regional disparities
-- Loan Term Analysis (Donut Chart): To allow the client to understand the distribution of loans across various term lengths.
-- Employee Length Analysis (Bar Chart): How lending metrics are distributed among borrowers with different employment lengths, helping us assess the impact of employment history on loan applications.
-- Loan Purpose Breakdown (Bar Chart): Will provide a visual breakdown of loan metrics based on the stated purposes of loans, aiding in the understanding of the primary reasons borrowers seek financing.
-- Home Ownership Analysis (Tree Map): For a hierarchical view of how home ownership impacts loan applications and disbursements.
-Metrics to be shown: 'Total Loan Applications,' 'Total Funded Amount,' and 'Total Amount Received'
-
-### Details Dashboard
-GRID
-
-Need for a comprehensive 'Details Dashboard' that provides a consolidated view of all the essential information within our loan data. This Details Dashboard aims to offer a holistic snapshot of key loan-related metrics and data points, enabling users to access critical information efficiently.
-
-Objective: The primary objective of the Details Dashboard is to provide a comprehensive and user-friendly interface for accessing vital loan data. It will serve as a one-stop solution for users seeking detailed insights into our loan portfolio, borrower profiles, and loan performance.
+- Billing Amount by Patient Location (City/State) (Azure Map):  To identify seasonality and long-term trends in lending activities
+- Billing Amount by Procedure (Clustered Column Chart): To identify regions with significant lending activity and assess regional disparities
+- Billing Amount by Diagnosis and Service Type (100% Stacked Bar Chart): To allow the client to understand the distribution of loans across various term lengths.
+- Bililng Amount by Department (Clustered Bar Chart): How lending metrics are distributed among borrowers with different employment lengths, helping us assess the impact of employment history on loan applications.
 
 ## Tools
 | Tools | Purpose |
 | --- | --- |
-| Excel | Explore, Clean, Analyze & Visualize the data |
-| SQL | Testing and Analyzing the data |
-| Power Bi | Visualizing the data with interactive dashboards |
+| Power Bi | Explore, Clean, Analyse & Visualise the data with interactive dashboards |
+| SQL | Testing and Analysing the data |
 | Github | Hosting the project documentation |
 
 ## Data Exploration notes
-I observed that the dataset can be categorized into three sections 
+I observed that the dataset can be categorised into three sections 
    Applicant Details: id, emp_length, emp_title, annual_income, application_type, home_ownership
    Loan Details: loan_amount, term, int_rate, installment, loan_status, grade, sub_grade, purpose
    Payment and Credit History: total_payment, dti (debt-to-income), total_acc, issue_date, last_payment_date, next_payment_date, last_credit_pull_date

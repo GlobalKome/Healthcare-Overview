@@ -70,56 +70,162 @@ A total of eight (8) datasets were provided:
 - departments: department id, department
 - cities: city id, city, state
 
-Excel was used to check through for null values, and emp_title field had null values.
-While loading the dataset into SQL, four fields were in the wrong data type.
-
-What steps were taken to clean and shape the data?
-- emp_title field was found to be a negligible field hence nothing was done to it
-- The fields with wrong data type were fixed in SQL
+ 
+### What steps were taken to clean and shape the data?
+- Nulls were discovered in the admitted and discharged date columns, but after consulting with the client, they refer to people who were neither admitted nor discharged, so the nulls were not removed.
+- A new conditional column was created called length of stay that calculates the difference between the admission date and discharge date.
+- A new datetable was also created, extracted from the date of visit column. This new table contained: date, Year, month, quarter, weekday, weeknum, monthnum, weektype
 
 # Visualization
 ## Results
 
 ![This-shows-the-Summary-Dashboard](Assets/images/LPPMS-Summary.png)
 
-![This-shows-the-Overview-Dashboard](Assets/images/LPPMS-Overview.png)
-
-![This-shows-the-Details-Dashboard](Assets/images/LPPMS-Details.png)
-
 ## Measures
 ### Top KPIs required
-### Total Loan Applications
+
 ```sql
-Total Loan Applications = COUNT(bank_loan_data[id])
+Total Billing Amount = 
+    [Total Medication Cost] +
+    [Total Room Charges] +
+    [Total Treatment Cost]
+
+Total Medication Cost =
+     SUM(visits[Medication Cost])
+
+Total Treatment Cost =
+     SUM(visits[Treatment Cost])
+
+Total Insurance Coverage =
+     SUM(visits[Insurance Coverage])
+
+Total Room Charges = 
+    SUMX(
+          visits,
+          visits[Room Charges(daily rate)] * visits[Length of Stay]
+         )
+
+Out-of-Pocket = [Total Billing Amount] - [Total Insurance Coverage]
 ```
-### Total Funded Amount
+### Averages
 ```sql
-Total Funded Amount = SUM(bank_loan_data[loan_amount])
+Average Billing Amount Per Visit = 
+    DIVIDE(
+        [Total Billing Amount],
+        [Total Patients]
+    )
+
+Average Medication Cost = AVERAGE(visits[Medication Cost])
+
+Average Treatment Cost = AVERAGE(visits[Treatment Cost])
+
+Average Insurance Coverage = AVERAGE(visits[Insurance Coverage])
+
+Average Room Charges = 
+    DIVIDE(
+        [Total Room Charges],
+        [Total Patients]
+    )
+
+Average Out-of-Pocket = 
+    DIVIDE(
+        [Out-of-Pocket],
+        [Total Patients]
+    )
 ```
-### Total Received Amount 
- ```sql
- Total Amount Received = SUM(bank_loan_data[total_payment])
- ``` 
-### Average Interest Rate
-```sql
-Avg Interest Rate = AVERAGE(bank_loan_data[int_rate])
-```
-### Average DTI
-```sql
-Avg Dti = AVERAGE(bank_loan_data[dti])
-```
-### Good Loan %
-```sql
-Good Loan % = (CALCULATE([Total Loan Applications], bank_loan_data[Good vs Bad Loan] = "Good Loan")) / [Total Loan Applications]
-```
-### Bad Loan %
-```sql
-Bad Loan % = (CALCULATE([Total Loan Applications], bank_loan_data[Good vs Bad Loan] = "Bad Loan")) / [Total Loan Applications]
-```
+
 # Testing
 SQL was used primarily for testing the data
-```
-fghjgh
+```sql
+-- Create a datetable to improve analysis
+SELECT
+		DISTINCT CAST(Date_of_Visit AS Date) AS Date,
+		YEAR(Date_of_Visit) AS Year,
+		MONTH(Date_of_Visit) AS MonthNum,
+		LEFT(DATENAME(MONTH, Date_of_Visit), 3) AS Month_name,
+    	LEFT(DATENAME(WEEKDAY, Date_of_Visit), 3) AS WeekDay,
+		DATEPART(WEEKDAY, Date_of_Visit) AS WeekNum,
+		CONCAT ('Q-', DATEPART(QUARTER, Date_of_Visit)) AS Quarter,
+		CASE 
+			WHEN DATEPART(WEEKDAY, Date_of_Visit) IN (1,7) THEN 'Weekend'
+			ELSE 'WeekDay'
+		END AS WeekType
+	INTO DateTable
+	FROM visits
+	WHERE Date_of_Visit IS NOT NULL
+	ORDER BY Date;
+
+SELECT * 
+FROM DateTable
+ORDER BY WeekNum;
+
+
+
+-- Total Treatment cost 
+SELECT
+	SUM(Treatment_Cost) AS Total_Treatment_Cost
+FROM visits
+
+-- Total Medication cost 
+SELECT
+	SUM(Medication_Cost) AS Total_Medication_Cost
+FROM visits
+
+-- Total Insurance Coverage
+SELECT
+	SUM(Insurance_Coverage) AS Total_Insurance_Coverage
+FROM visits
+
+-- Total Room Charges
+SELECT
+	SUM(Room_Charges_daily_rate * DATEDIFF(DAY, Admitted_Date, Discharge_Date))
+FROM visits
+
+-- Total Billing Amount
+SELECT 
+	SUM(Treatment_Cost) +
+	SUM(Medication_Cost) +
+	SUM(Room_Charges_daily_rate * DATEDIFF(DAY, Admitted_Date, Discharge_Date))
+		AS Total_Billing_Amount
+FROM visits
+
+-- Out of Pocket
+SELECT 
+	((SUM(Treatment_Cost) +
+	SUM(Medication_Cost) +
+	SUM(Room_Charges_daily_rate * DATEDIFF(DAY, Admitted_Date, Discharge_Date)))
+		- (SUM(Insurance_Coverage)))
+		AS Out_of_Pocket
+FROM visits
+
+-- Average Treatment cost
+SELECT
+	AVG(Treatment_Cost) AS Avg_Treatment_Cost
+FROM visits
+
+-- Average Medication cost
+SELECT
+	AVG(Medication_Cost) AS Avg_Medication_Cost
+FROM visits
+
+-- Average Room Charges
+SELECT
+	SUM(Room_Charges_daily_rate * DATEDIFF(DAY, Admitted_Date, Discharge_Date)) 
+	/ COUNT(DISTINCT Patient_ID) AS Avg_Room_Charges
+FROM visits
+
+-- Average Insurance Coverage
+SELECT
+	AVG(Insurance_Coverage) AS Avg_Insurance
+FROM visits
+
+-- Average Out-of-pocket
+SELECT
+	((SUM(Treatment_Cost) +
+	SUM(Medication_Cost) +
+	SUM(Room_Charges_daily_rate * DATEDIFF(DAY, Admitted_Date, Discharge_Date)))
+		- (SUM(Insurance_Coverage))) / COUNT(DISTINCT Patient_ID) AS Avg_Out_of_pocket
+FROM visits
 ```
 
 # Findings

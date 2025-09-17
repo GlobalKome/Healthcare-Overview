@@ -78,7 +78,7 @@ A total of eight (8) datasets were provided:
 # Visualization
 ## Results
 
-![This-shows-the-Summary-Dashboard](Assets/Healthcare_Revenue_Summary.png)
+![This-shows-the-Summary-Dashboard](Assets/images/Healthcare_Revenue_Summary.png)
 
 ## Measures
 ### Top KPIs required
